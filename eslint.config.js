@@ -9,4 +9,7 @@ export default antfu({
   typescript: {
     tsconfigPath: 'tsconfig.json',
   },
+  rules: {
+    'react-refresh/only-export-components': 'off',
+  },
 })
