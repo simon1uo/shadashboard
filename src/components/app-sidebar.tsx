@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom'
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -9,10 +10,11 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarRail,
 } from '@/components/ui/sidebar'
 import { appMeta } from '@/configs/app-data'
 import { navGroups } from '@/configs/nav-data'
+import { user } from '@/configs/user'
+import { AppUser } from './app-user'
 
 export function AppSidebar() {
   const { pathname } = useLocation()
@@ -61,7 +63,9 @@ export function AppSidebar() {
         ))}
       </SidebarContent>
 
-      <SidebarRail />
+      <SidebarFooter>
+        <AppUser user={user} />
+      </SidebarFooter>
     </Sidebar>
   )
 }
