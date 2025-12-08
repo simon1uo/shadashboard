@@ -1,7 +1,16 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import './styles/fonts.css';
 
 @custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-family-sans: var(--font-sans);
+  --font-family-mono: var(--font-mono);
+
+  --font-weight-medium: 500;
+  --line-height-tight: 1.25;
+}
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -114,6 +123,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }

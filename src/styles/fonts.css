@@ -1,0 +1,18 @@
+:root {
+  --font-sans: 'Inter Variable', 'Noto Sans SC', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
+
+  --fw-normal: 400;
+  --fw-medium: 500;
+  --fw-bold: 700;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-display: swap;
+}
+
+code,
+pre {
+  font-family: var(--font-mono);
+}
