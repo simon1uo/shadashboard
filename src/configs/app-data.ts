@@ -6,6 +6,6 @@ export interface AppMeta {
 
 export const appMeta: AppMeta = {
   name: 'Shadashboard',
-  subtitle: 'A shadcn/ui dashboard template',
+  subtitle: 'A shadcn dashboard template',
   initials: 'SD',
 }
