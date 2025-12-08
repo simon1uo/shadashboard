@@ -1,7 +1,6 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom'
 import { AppLayout } from '@/layouts/AppLayout'
-import Dashboard1Page from '@/pages/dashboard1'
-import Dashboard2Page from '@/pages/dashboard2'
+import { Dashboard } from '@/pages/dashboard'
 
 export const router = createBrowserRouter([
   {
@@ -13,12 +12,8 @@ export const router = createBrowserRouter([
         element: <Navigate to="dashboard1" replace />,
       },
       {
-        path: 'dashboard1',
-        element: <Dashboard1Page />,
-      },
-      {
-        path: 'dashboard2',
-        element: <Dashboard2Page />,
+        path: 'dashboard',
+        element: <Dashboard />,
       },
     ],
   },

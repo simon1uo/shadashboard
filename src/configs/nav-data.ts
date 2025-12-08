@@ -1,5 +1,5 @@
 import type { LucideIcon } from 'lucide-react'
-import { LayoutDashboard, PanelsTopLeft } from 'lucide-react'
+import { LayoutDashboard } from 'lucide-react'
 
 export interface NavItem {
   title: string
@@ -16,18 +16,12 @@ export interface NavGroup {
 export const navGroups: NavGroup[] = [
 
   {
-    label: 'Dashboards',
+    label: 'Blocks',
     items: [
       {
-        title: 'Dashboard 1',
-        href: '/dashboard1',
+        title: 'Dashboard',
+        href: '/dashboard',
         icon: LayoutDashboard,
-        description: 'Dashboard description example',
-      },
-      {
-        title: 'Dashboard 2',
-        href: '/dashboard2',
-        icon: PanelsTopLeft,
         description: 'Dashboard description example',
       },
     ],

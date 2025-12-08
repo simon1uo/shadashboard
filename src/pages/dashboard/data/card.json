@@ -1,0 +1,38 @@
+[
+  {
+    "id": "revenue",
+    "title": "Total Revenue",
+    "value": "$1,250.00",
+    "change": "+12.5%",
+    "trend": "up",
+    "trendLabel": "Trending up this month",
+    "description": "Revenue for the last 6 months"
+  },
+  {
+    "id": "subscriptions",
+    "title": "New Subscriptions",
+    "value": "1,240",
+    "change": "+6.3%",
+    "trend": "up",
+    "trendLabel": "Signups continue to climb",
+    "description": "Users joined in the last 30 days"
+  },
+  {
+    "id": "churn",
+    "title": "Churn Rate",
+    "value": "3.1%",
+    "change": "-1.2%",
+    "trend": "down",
+    "trendLabel": "Churn improving",
+    "description": "Month-over-month change"
+  },
+  {
+    "id": "sessions",
+    "title": "Daily Sessions",
+    "value": "24,800",
+    "change": "+9.4%",
+    "trend": "up",
+    "trendLabel": "Engagement trending up",
+    "description": "7-day rolling average"
+  }
+]
