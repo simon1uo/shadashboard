@@ -1,5 +1,6 @@
-import type { Theme } from '@/contexts/theme-context'
+import type { MouseEvent } from 'react'
 
+import type { Theme } from '@/contexts/theme-context'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { ThemeContext } from '@/contexts/theme-context'
 
@@ -16,6 +17,10 @@ function getSystemTheme(): 'light' | 'dark' {
   if (typeof window === 'undefined')
     return 'light'
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+}
+
+function isAppearanceTransitionSupported() {
+  return !window.matchMedia('(prefers-reduced-motion: reduce)').matches
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
@@ -54,9 +59,49 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     setThemeState(next)
   }, [])
 
-  const toggleTheme = useCallback(() => {
-    setThemeState(prev => (prev === 'dark' ? 'light' : 'dark'))
-  }, [])
+  const toggleTheme = useCallback((event?: MouseEvent<HTMLElement>) => {
+    const nextTheme: Theme = resolvedTheme === 'dark' ? 'light' : 'dark'
+    const startViewTransition = (document).startViewTransition?.bind(document) as
+      | ((callback: () => void | Promise<void>) => ViewTransition)
+      | undefined
+
+    if (!event || !startViewTransition || !isAppearanceTransitionSupported()) {
+      setThemeState(nextTheme)
+      return
+    }
+
+    const x = event.clientX
+    const y = event.clientY
+    const isDarkMode = resolvedTheme === 'dark'
+    const endRadius = Math.hypot(
+      Math.max(x, innerWidth - x),
+      Math.max(y, innerHeight - y),
+    )
+
+    const transition = startViewTransition(() => {
+      setThemeState(nextTheme)
+    })
+
+    transition.ready.then(() => {
+      const clipPath = [
+        `circle(0px at ${x}px ${y}px)`,
+        `circle(${endRadius}px at ${x}px ${y}px)`,
+      ]
+      document.documentElement.animate(
+        {
+          clipPath: isDarkMode ? [...clipPath].reverse() : clipPath,
+        },
+        {
+          duration: 400,
+          easing: 'ease-out',
+          fill: 'forwards',
+          pseudoElement: isDarkMode
+            ? '::view-transition-old(root)'
+            : '::view-transition-new(root)',
+        },
+      )
+    })
+  }, [resolvedTheme])
 
   const value = useMemo(
     () => ({
