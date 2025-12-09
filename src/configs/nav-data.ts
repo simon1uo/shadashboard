@@ -9,14 +9,13 @@ export interface NavItem {
 }
 
 export interface NavGroup {
-  label: string
+  label?: string
   items: NavItem[]
 }
 
 export const navGroups: NavGroup[] = [
 
   {
-    label: 'Blocks',
     items: [
       {
         title: 'Dashboard',
