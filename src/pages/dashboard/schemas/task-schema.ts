@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const schema = z.object({
+export const taskSchema = z.object({
   id: z.number(),
   header: z.string(),
   type: z.string(),
@@ -10,4 +10,4 @@ export const schema = z.object({
   reviewer: z.string(),
 })
 
-export type Task = z.infer<typeof schema>
+export type Task = z.infer<typeof taskSchema>

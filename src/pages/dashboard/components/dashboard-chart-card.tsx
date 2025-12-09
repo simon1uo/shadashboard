@@ -8,6 +8,8 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import cardData from '../data/card.json'
+
 
 export interface ChartCardProps {
   title: string
@@ -18,7 +20,7 @@ export interface ChartCardProps {
   description: string
 }
 
-export function ChartCard({
+function ChartCard({
   title,
   value,
   change,
@@ -52,5 +54,17 @@ export function ChartCard({
         </div>
       </CardFooter>
     </Card>
+  )
+}
+
+export function DashboardChartCard() {
+  const cards = cardData as Array<{ id: string } & ChartCardProps>
+
+  return (
+    <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+      {cards.map(({ id, ...card }) => (
+        <ChartCard key={id} {...card} />
+      ))}
+    </div>
   )
 }
