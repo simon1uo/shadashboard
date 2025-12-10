@@ -98,17 +98,17 @@ export function AppSidebar() {
                       >
                         {item.url
                           ? (
-                            <Link to={item.url} target={item.target} rel={item.target === '_blank' ? 'noreferrer' : undefined}>
-                              {Icon ? <Icon className="size-4" /> : null}
-                              <span>{item.title}</span>
-                            </Link>
-                          )
+                              <Link to={item.url} target={item.target} rel={item.target === '_blank' ? 'noreferrer' : undefined}>
+                                {Icon ? <Icon className="size-4" /> : null}
+                                <span>{item.title}</span>
+                              </Link>
+                            )
                           : (
-                            <div className="flex items-center gap-2">
-                              {Icon ? <Icon className="size-4" /> : null}
-                              <span>{item.title}</span>
-                            </div>
-                          )}
+                              <div className="flex items-center gap-2">
+                                {Icon ? <Icon className="size-4" /> : null}
+                                <span>{item.title}</span>
+                              </div>
+                            )}
                       </SidebarMenuButton>
                     </SidebarMenuItem>
                   )
