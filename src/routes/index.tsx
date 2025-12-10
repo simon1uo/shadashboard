@@ -5,6 +5,7 @@ import { useAuth } from '@/hooks/use-auth'
 import { AppLayout } from '@/layouts/AppLayout'
 
 const Dashboard = lazy(() => import('@/pages/dashboard'))
+const Agent = lazy(() => import('@/pages/agent/agent'))
 const Error = lazy(() => import('@/pages/errors/error'))
 const Login1 = lazy(() => import('@/pages/auth/login-1'))
 const Login2 = lazy(() => import('@/pages/auth/login-2'))
@@ -50,6 +51,14 @@ export const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <Dashboard />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'agent',
+        element: (
+          <ProtectedRoute>
+            <Agent />
           </ProtectedRoute>
         ),
       },

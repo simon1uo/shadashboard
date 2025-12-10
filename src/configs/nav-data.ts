@@ -1,5 +1,5 @@
 import type { LucideIcon } from 'lucide-react'
-import { AlertTriangle, LayoutDashboard, Settings, Shield, User } from 'lucide-react'
+import { AlertTriangle, LayoutDashboard, MessageCircle, Settings, Shield, User } from 'lucide-react'
 
 export interface NavItem {
   title: string
@@ -24,6 +24,12 @@ export const navGroups: NavGroup[] = [
         url: '/dashboard',
         icon: LayoutDashboard,
         description: 'Dashboard description example',
+      },
+      {
+        title: 'Agent',
+        url: '/agent',
+        icon: MessageCircle,
+        description: 'AI-powered assistant to power your creativity.',
       },
     ],
   },
