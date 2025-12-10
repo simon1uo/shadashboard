@@ -71,6 +71,7 @@ export function useAppTableState<TData extends WithId>({
     setData(initialData)
   }, [initialData])
 
+  // eslint-disable-next-line react-hooks/incompatible-library
   const table = useReactTable({
     data,
     columns,
@@ -96,18 +97,23 @@ export function useAppTableState<TData extends WithId>({
     getFacetedUniqueValues: getFacetedUniqueValues(),
   })
 
-  function handleDragEnd(event: DragEndEvent) {
+  const handleDragEnd = React.useCallback((event: DragEndEvent) => {
     const { active, over } = event
-    if (active && over && active.id !== over.id) {
-      setData((current) => {
-        const oldIndex = dataIds.indexOf(active.id)
-        const newIndex = dataIds.indexOf(over.id)
-        const next = arrayMove(current, oldIndex, newIndex)
-        onDataChange?.(next)
-        return next
-      })
-    }
-  }
+    if (!active || !over || active.id === over.id)
+      return
+
+    setData((current) => {
+      const ids = current.map(r => r.id)
+      const oldIndex = ids.indexOf(active.id)
+      const newIndex = ids.indexOf(over.id)
+      if (oldIndex === -1 || newIndex === -1)
+        return current
+
+      const next = arrayMove(current, oldIndex, newIndex)
+      onDataChange?.(next)
+      return next
+    })
+  }, [onDataChange])
 
   return {
     table,

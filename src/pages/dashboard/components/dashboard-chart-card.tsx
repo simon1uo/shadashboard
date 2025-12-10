@@ -10,7 +10,6 @@ import {
 } from '@/components/ui/card'
 import cardData from '../data/card.json'
 
-
 export interface ChartCardProps {
   title: string
   value: string

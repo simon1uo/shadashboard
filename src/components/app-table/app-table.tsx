@@ -169,8 +169,8 @@ export function AppTable<TData extends WithId>({
         </div>
         {toolbar
           ? (
-            <div className="flex items-center gap-2">{toolbar(table)}</div>
-          )
+              <div className="flex items-center gap-2">{toolbar(table)}</div>
+            )
           : null}
       </div>
       <div className="overflow-hidden rounded-lg border">
@@ -191,9 +191,9 @@ export function AppTable<TData extends WithId>({
                         {header.isPlaceholder
                           ? null
                           : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext(),
-                          )}
+                              header.column.columnDef.header,
+                              header.getContext(),
+                            )}
                       </TableHead>
                     )
                   })}
@@ -203,25 +203,25 @@ export function AppTable<TData extends WithId>({
             <TableBody className="**:data-[slot=table-cell]:first:w-8">
               {table.getRowModel().rows?.length
                 ? (
-                  <SortableContext
-                    items={dataIds}
-                    strategy={verticalListSortingStrategy}
-                  >
-                    {table.getRowModel().rows.map(row => (
-                      <DraggableRow key={row.id} row={row} />
-                    ))}
-                  </SortableContext>
-                )
-                : (
-                  <TableRow>
-                    <TableCell
-                      colSpan={visibleColumnCount}
-                      className="h-24 text-center"
+                    <SortableContext
+                      items={dataIds}
+                      strategy={verticalListSortingStrategy}
                     >
-                      {emptyMessage}
-                    </TableCell>
-                  </TableRow>
-                )}
+                      {table.getRowModel().rows.map(row => (
+                        <DraggableRow key={row.id} row={row} />
+                      ))}
+                    </SortableContext>
+                  )
+                : (
+                    <TableRow>
+                      <TableCell
+                        colSpan={visibleColumnCount}
+                        className="h-24 text-center"
+                      >
+                        {emptyMessage}
+                      </TableCell>
+                    </TableRow>
+                  )}
             </TableBody>
           </Table>
         </DndContext>
@@ -229,10 +229,10 @@ export function AppTable<TData extends WithId>({
       <div className="flex items-center justify-between px-4">
         {enableRowSelection
           ? (
-            <div className="text-muted-foreground hidden flex-1 text-sm lg:flex">
-              {`${table.getFilteredSelectedRowModel().rows.length} of ${table.getFilteredRowModel().rows.length} row(s) selected.`}
-            </div>
-          )
+              <div className="text-muted-foreground hidden flex-1 text-sm lg:flex">
+                {`${table.getFilteredSelectedRowModel().rows.length} of ${table.getFilteredRowModel().rows.length} row(s) selected.`}
+              </div>
+            )
           : <div />}
         <div className="flex w-full items-center gap-8 lg:w-fit">
           <div className="hidden items-center gap-2 lg:flex">

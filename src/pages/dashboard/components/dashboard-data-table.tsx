@@ -289,11 +289,11 @@ export function DashboardDataTable() {
           <Badge variant="outline" className="text-muted-foreground px-1.5">
             {row.original.status === 'Done'
               ? (
-                <CircleCheckBig className="text-green-500 dark:text-green-400" />
-              )
+                  <CircleCheckBig className="text-green-500 dark:text-green-400" />
+                )
               : (
-                <Loader />
-              )}
+                  <Loader />
+                )}
             {row.original.status}
           </Badge>
         ),

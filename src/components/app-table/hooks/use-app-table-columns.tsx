@@ -1,10 +1,10 @@
 import type { UniqueIdentifier } from '@dnd-kit/core'
-import { useSortable } from '@dnd-kit/sortable'
 import type { ColumnDef } from '@tanstack/react-table'
-import { Checkbox } from '@/components/ui/checkbox'
-import { Button } from '@/components/ui/button'
+import { useSortable } from '@dnd-kit/sortable'
 import { GripVertical } from 'lucide-react'
 import * as React from 'react'
+import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
 
 interface WithId {
   id: UniqueIdentifier

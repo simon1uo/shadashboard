@@ -46,9 +46,10 @@ function ChartContainer({
 }) {
   const uniqueId = React.useId()
   const chartId = `chart-${id || uniqueId.replace(/:/g, '')}`
+  const contextValue = React.useMemo(() => ({ config }), [config])
 
   return (
-    <ChartContext value={{ config }}>
+    <ChartContext value={contextValue}>
       <div
         data-slot="chart"
         data-chart={chartId}
@@ -76,27 +77,26 @@ function ChartStyle({ id, config }: { id: string, config: ChartConfig }) {
     return null
   }
 
+  const cssText = Object.entries(THEMES)
+    .map(([theme, prefix]) => {
+      const lines = colorConfig
+        .map(([key, itemConfig]) => {
+          const color
+            = itemConfig.theme?.[theme as keyof typeof itemConfig.theme]
+              ?? itemConfig.color
+          return color ? `  --color-${key}: ${color};` : null
+        })
+        .filter(Boolean)
+        .join('\n')
+
+      return `${prefix} [data-chart="${id}"] {\n${lines}\n}`
+    })
+    .join('\n')
+
   return (
-    <style
-      dangerouslySetInnerHTML={{
-        __html: Object.entries(THEMES)
-          .map(
-            ([theme, prefix]) => `
-${prefix} [data-chart=${id}] {
-${colorConfig
-      .map(([key, itemConfig]) => {
-        const color
-          = itemConfig.theme?.[theme as keyof typeof itemConfig.theme]
-            || itemConfig.color
-        return color ? `  --color-${key}: ${color};` : null
-      })
-      .join('\n')}
-}
-`,
-          )
-          .join('\n'),
-      }}
-    />
+    <style>
+      {cssText}
+    </style>
   )
 }
 
@@ -211,7 +211,7 @@ function ChartTooltipContent({
                                       'h-2.5 w-2.5': indicator === 'dot',
                                       'w-1': indicator === 'line',
                                       'w-0 border-[1.5px] border-dashed bg-transparent':
-                                indicator === 'dashed',
+                                    indicator === 'dashed',
                                       'my-0.5': nestLabel && indicator === 'dashed',
                                     },
                                   )}
