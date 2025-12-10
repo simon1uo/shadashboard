@@ -15,6 +15,7 @@ import {
 } from '@/pages/auth'
 import { Dashboard } from '@/pages/dashboard'
 import { Error } from '@/pages/errors/components/error'
+import { AccountSettings, BillingSettings, ConnectionSettings, NotificationSettings, UserSettings } from '@/pages/forms'
 
 function IndexRedirect() {
   const { isAuthed } = useAuth()
@@ -45,6 +46,46 @@ export const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <Dashboard />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'settings/user',
+        element: (
+          <ProtectedRoute>
+            <UserSettings />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'settings/account',
+        element: (
+          <ProtectedRoute>
+            <AccountSettings />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'settings/notification',
+        element: (
+          <ProtectedRoute>
+            <NotificationSettings />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'settings/connection',
+        element: (
+          <ProtectedRoute>
+            <ConnectionSettings />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: 'settings/billing',
+        element: (
+          <ProtectedRoute>
+            <BillingSettings />
           </ProtectedRoute>
         ),
       },

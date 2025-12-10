@@ -1,5 +1,5 @@
 import type { LucideIcon } from 'lucide-react'
-import { AlertTriangle, LayoutDashboard, Shield } from 'lucide-react'
+import { AlertTriangle, LayoutDashboard, Settings, Shield, User } from 'lucide-react'
 
 export interface NavItem {
   title: string
@@ -31,6 +31,42 @@ export const navGroups: NavGroup[] = [
     label: 'Pages',
     items: [
       {
+        title: 'Settings',
+        icon: Settings,
+        items: [
+          {
+            title: 'Account Settings',
+            url: '/settings/account',
+            icon: User,
+            description: 'Manage your account settings and preferences.',
+          },
+          {
+            title: 'Profile Settings',
+            url: '/settings/user',
+            icon: LayoutDashboard,
+            description: 'Update your personal information and preferences',
+          },
+          {
+            title: 'Notifications',
+            url: '/settings/notification',
+            icon: LayoutDashboard,
+            description: 'Configure how you receive notifications.',
+          },
+          {
+            title: 'Connections',
+            url: '/settings/connection',
+            icon: LayoutDashboard,
+            description: 'Connect your account with third-party services and integrations.',
+          },
+          {
+            title: 'Plans & Billing',
+            url: '/settings/billing',
+            icon: LayoutDashboard,
+            description: 'Manage your subscription and billing information.',
+          },
+        ],
+      },
+      {
         title: 'Auth',
         icon: Shield,
         items: [
@@ -56,6 +92,7 @@ export const navGroups: NavGroup[] = [
           { title: '503 Maintenance', url: '/503', icon: LayoutDashboard },
         ],
       },
+
     ],
   },
 ]

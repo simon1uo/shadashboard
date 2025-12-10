@@ -1,5 +1,5 @@
-import { EllipsisVertical, LogOut, Settings, UserRound } from 'lucide-react'
-import { useNavigate } from 'react-router-dom'
+import { Bell, CreditCard, EllipsisVertical, LogOut, Plug, UserRound } from 'lucide-react'
+import { Link, useNavigate } from 'react-router-dom'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { SidebarFooter, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar'
@@ -54,13 +54,29 @@ export function AppUser({ user }: AppUserProps) {
               </SidebarMenuButton>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" side="right" className="w-44">
-              <DropdownMenuItem>
-                <UserRound className="mr-2 size-4" />
-                Account
+              <DropdownMenuItem asChild>
+                <Link to="/settings/account">
+                  <UserRound className="mr-2 size-4" />
+                  Account
+                </Link>
               </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Settings className="mr-2 size-4" />
-                Setting
+              <DropdownMenuItem asChild>
+                <Link to="/settings/billing">
+                  <CreditCard className="mr-2 size-4" />
+                  Billing
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/settings/notification">
+                  <Bell className="mr-2 size-4" />
+                  Notifications
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link to="/settings/connection">
+                  <Plug className="mr-2 size-4" />
+                  Connections
+                </Link>
               </DropdownMenuItem>
               <DropdownMenuItem onSelect={handleLogout}>
                 <LogOut className="mr-2 size-4" />
