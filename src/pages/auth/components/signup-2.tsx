@@ -1,0 +1,28 @@
+import { AppLogo } from '@/components/app-logo'
+import { SignupForm2 } from './signup-form-2'
+
+export function Signup2() {
+  return (
+    <div className="grid min-h-svh lg:grid-cols-2">
+      <div className="flex flex-col gap-4 p-6 md:p-10">
+        <div className="flex justify-center gap-2 md:justify-start">
+          <a href="/" className="flex items-center gap-3 font-medium">
+            <AppLogo nameClassName="text-lg font-semibold" />
+          </a>
+        </div>
+        <div className="flex flex-1 items-center justify-center">
+          <div className="w-full max-w-md">
+            <SignupForm2 />
+          </div>
+        </div>
+      </div>
+      <div className="bg-muted relative hidden lg:block">
+        <img
+          src="https://ui.shadcn.com/placeholder.svg"
+          alt="Image"
+          className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.95] dark:invert"
+        />
+      </div>
+    </div>
+  )
+}

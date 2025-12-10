@@ -71,7 +71,6 @@ export function useAppTableState<TData extends WithId>({
     setData(initialData)
   }, [initialData])
 
-  // eslint-disable-next-line react-hooks/incompatible-library
   const table = useReactTable({
     data,
     columns,

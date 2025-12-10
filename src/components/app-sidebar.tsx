@@ -1,4 +1,10 @@
+import { ChevronRight } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from '@/components/ui/collapsible'
 import {
   Sidebar,
   SidebarContent,
@@ -10,10 +16,13 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
 } from '@/components/ui/sidebar'
-import { appMeta } from '@/configs/app-data'
 import { navGroups } from '@/configs/nav-data'
 import { user } from '@/configs/user'
+import { AppLogo } from './app-logo'
 import { AppUser } from './app-user'
 
 export function AppSidebar() {
@@ -25,13 +34,7 @@ export function AppSidebar() {
         <SidebarMenuItem>
           <SidebarMenuButton asChild>
             <Link to="/">
-              <div className="flex size-8 items-center justify-center rounded-md bg-primary/10 text-sm font-semibold text-primary">
-                {appMeta.initials}
-              </div>
-              <div className="space-y-0.5">
-                <p className="text-sm font-semibold leading-tight">{appMeta.name}</p>
-                <p className="text-xs text-muted-foreground">{appMeta.subtitle}</p>
-              </div>
+              <AppLogo showSubtitle />
             </Link>
           </SidebarMenuButton>
         </SidebarMenuItem>
@@ -43,16 +46,69 @@ export function AppSidebar() {
             {group.label ? <SidebarGroupLabel>{group.label}</SidebarGroupLabel> : null}
             <SidebarGroupContent>
               <SidebarMenu>
-                {group.items.map((item) => {
+                {group.items.map((item, itemIndex) => {
                   const Icon = item.icon
-                  const isActive = pathname === item.href
+                  const hasChildren = Boolean(item.items?.length)
+                  const childActive = item.items?.some(child => child.url === pathname)
+                  const isActive = pathname === item.url || childActive
+
+                  if (hasChildren) {
+                    return (
+                      <Collapsible key={item.url || `${item.title}-${itemIndex}`} defaultOpen className="group/collapsible">
+                        <SidebarMenuItem>
+                          <CollapsibleTrigger asChild>
+                            <SidebarMenuButton tooltip={item.title} className="cursor-pointer">
+                              {Icon ? <Icon className="size-4" /> : null}
+                              <span>{item.title}</span>
+                              <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                            </SidebarMenuButton>
+                          </CollapsibleTrigger>
+                          <CollapsibleContent>
+                            <SidebarMenuSub>
+                              {item.items!.map((child) => {
+                                const childActive = pathname === child.url
+                                return (
+                                  <SidebarMenuSubItem key={child.url || child.title}>
+                                    <SidebarMenuSubButton asChild isActive={childActive}>
+                                      <Link
+                                        to={child.url || '#'}
+                                        aria-disabled={!child.url}
+                                        target={child.target}
+                                        rel={child.target === '_blank' ? 'noreferrer' : undefined}
+                                      >
+                                        <span>{child.title}</span>
+                                      </Link>
+                                    </SidebarMenuSubButton>
+                                  </SidebarMenuSubItem>
+                                )
+                              })}
+                            </SidebarMenuSub>
+                          </CollapsibleContent>
+                        </SidebarMenuItem>
+                      </Collapsible>
+                    )
+                  }
+
                   return (
-                    <SidebarMenuItem key={item.href}>
-                      <SidebarMenuButton asChild isActive={isActive}>
-                        <Link to={item.href}>
-                          <Icon className="size-4" />
-                          <span>{item.title}</span>
-                        </Link>
+                    <SidebarMenuItem key={item.url || item.title}>
+                      <SidebarMenuButton
+                        asChild={Boolean(item.url)}
+                        isActive={Boolean(isActive)}
+                        aria-disabled={!item.url}
+                      >
+                        {item.url
+                          ? (
+                            <Link to={item.url} target={item.target} rel={item.target === '_blank' ? 'noreferrer' : undefined}>
+                              {Icon ? <Icon className="size-4" /> : null}
+                              <span>{item.title}</span>
+                            </Link>
+                          )
+                          : (
+                            <div className="flex items-center gap-2">
+                              {Icon ? <Icon className="size-4" /> : null}
+                              <span>{item.title}</span>
+                            </div>
+                          )}
                       </SidebarMenuButton>
                     </SidebarMenuItem>
                   )

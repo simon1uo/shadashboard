@@ -1,6 +1,34 @@
+import type { ReactNode } from 'react'
 import { createBrowserRouter, Navigate } from 'react-router-dom'
+import { useAuth } from '@/hooks/use-auth'
 import { AppLayout } from '@/layouts/AppLayout'
+import {
+  ForgotPassword1,
+  ForgotPassword2,
+  ForgotPassword3,
+  Login1,
+  Login2,
+  Login3,
+  Signup1,
+  Signup2,
+  Signup3,
+} from '@/pages/auth'
 import { Dashboard } from '@/pages/dashboard'
+
+function IndexRedirect() {
+  const { isAuthed } = useAuth()
+
+  return <Navigate to={isAuthed ? '/dashboard' : '/login'} replace />
+}
+
+function ProtectedRoute({ children }: { children: ReactNode }) {
+  const { isAuthed } = useAuth()
+
+  if (!isAuthed)
+    return <Navigate to="/login" replace />
+
+  return <>{children}</>
+}
 
 export const router = createBrowserRouter([
   {
@@ -9,12 +37,52 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Navigate to="dashboard" replace />,
+        element: <IndexRedirect />,
       },
       {
         path: 'dashboard',
-        element: <Dashboard />,
+        element: (
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        ),
       },
     ],
+  },
+  {
+    path: '/login',
+    element: <Login1 />,
+  },
+  {
+    path: '/login-2',
+    element: <Login2 />,
+  },
+  {
+    path: '/login-3',
+    element: <Login3 />,
+  },
+  {
+    path: '/forgot-password',
+    element: <ForgotPassword1 />,
+  },
+  {
+    path: '/forgot-password-2',
+    element: <ForgotPassword2 />,
+  },
+  {
+    path: '/forgot-password-3',
+    element: <ForgotPassword3 />,
+  },
+  {
+    path: '/auth/sign-up',
+    element: <Signup1 />,
+  },
+  {
+    path: '/auth/sign-up-2',
+    element: <Signup2 />,
+  },
+  {
+    path: '/auth/sign-up-3',
+    element: <Signup3 />,
   },
 ])

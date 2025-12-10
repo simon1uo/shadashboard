@@ -1,7 +1,9 @@
 import { EllipsisVertical, LogOut, Settings, UserRound } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { SidebarFooter, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar'
+import { useAuth } from '@/hooks/use-auth'
 
 interface AppUserProps {
   user: {
@@ -23,6 +25,13 @@ function getInitials(name: string) {
 
 export function AppUser({ user }: AppUserProps) {
   const initials = getInitials(user.name)
+  const { logout } = useAuth()
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    logout()
+    navigate('/login', { replace: true })
+  }
 
   return (
     <SidebarFooter>
@@ -53,7 +62,7 @@ export function AppUser({ user }: AppUserProps) {
                 <Settings className="mr-2 size-4" />
                 Setting
               </DropdownMenuItem>
-              <DropdownMenuItem>
+              <DropdownMenuItem onSelect={handleLogout}>
                 <LogOut className="mr-2 size-4" />
                 Log out
               </DropdownMenuItem>
