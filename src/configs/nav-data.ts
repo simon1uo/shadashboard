@@ -1,5 +1,5 @@
 import type { LucideIcon } from 'lucide-react'
-import { LayoutDashboard, Shield } from 'lucide-react'
+import { AlertTriangle, LayoutDashboard, Shield } from 'lucide-react'
 
 export interface NavItem {
   title: string
@@ -43,6 +43,17 @@ export const navGroups: NavGroup[] = [
           { title: 'Forgot password 1', url: '/forgot-password', icon: LayoutDashboard, target: '_blank' },
           { title: 'Forgot password 2', url: '/forgot-password-2', icon: LayoutDashboard, target: '_blank' },
           { title: 'Forgot password 3', url: '/forgot-password-3', icon: LayoutDashboard, target: '_blank' },
+        ],
+      },
+      {
+        title: 'Errors',
+        icon: AlertTriangle,
+        items: [
+          { title: '401 Unauthorized', url: '/401', icon: LayoutDashboard },
+          { title: '403 Forbidden', url: '/403', icon: LayoutDashboard },
+          { title: '404 Not Found', url: '/404', icon: LayoutDashboard },
+          { title: '500 Server Error', url: '/500', icon: LayoutDashboard },
+          { title: '503 Maintenance', url: '/503', icon: LayoutDashboard },
         ],
       },
     ],

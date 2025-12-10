@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import { useMemo } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import { AppHeader } from '@/components/app-header'
@@ -5,7 +6,7 @@ import { AppSidebar } from '@/components/app-sidebar'
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
 import { navGroups } from '@/configs/nav-data'
 
-export function AppLayout() {
+export function AppLayout({ children }: { children?: ReactNode }) {
   const { pathname } = useLocation()
 
   const currentNav = useMemo(() => {
@@ -34,7 +35,7 @@ export function AppLayout() {
                       </div>
                     )
                   : null}
-                <Outlet />
+                {children ?? <Outlet />}
               </div>
             </div>
           </div>

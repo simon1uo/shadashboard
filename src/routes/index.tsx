@@ -14,6 +14,7 @@ import {
   Signup3,
 } from '@/pages/auth'
 import { Dashboard } from '@/pages/dashboard'
+import { Error } from '@/pages/errors/components/error'
 
 function IndexRedirect() {
   const { isAuthed } = useAuth()
@@ -84,5 +85,29 @@ export const router = createBrowserRouter([
   {
     path: '/auth/sign-up-3',
     element: <Signup3 />,
+  },
+  {
+    path: '/401',
+    element: <Error statusCode={401} />,
+  },
+  {
+    path: '/403',
+    element: <Error statusCode={403} />,
+  },
+  {
+    path: '/404',
+    element: <Error statusCode={404} />,
+  },
+  {
+    path: '/500',
+    element: <Error statusCode={500} />,
+  },
+  {
+    path: '/503',
+    element: <Error statusCode={503} />,
+  },
+  {
+    path: '*',
+    element: <Error statusCode={404} />,
   },
 ])
