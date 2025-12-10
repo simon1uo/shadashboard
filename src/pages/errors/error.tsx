@@ -39,7 +39,7 @@ const ERROR_CONTENT: Record<number, ErrorContent> = {
 
 const DEFAULT_ERROR: ErrorContent = ERROR_CONTENT[500]
 
-export function Error({ statusCode }: { statusCode: number }) {
+export default function Error({ statusCode }: { statusCode: number }) {
   const navigate = useNavigate()
 
   const content = useMemo(

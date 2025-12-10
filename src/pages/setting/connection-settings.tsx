@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Separator } from '@/components/ui/separator'
 import { Switch } from '@/components/ui/switch'
 
-export function ConnectionSettings() {
+export default function ConnectionSettings() {
   // Controlled state for switches
   const [appleConnected, setAppleConnected] = useState(true)
   const [googleConnected, setGoogleConnected] = useState(false)

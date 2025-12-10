@@ -1,7 +1,7 @@
 import { AppLogo } from '@/components/app-logo'
-import { ForgotPasswordForm2 } from './forgot-password-form-2'
+import { LoginForm2 } from './components/login-form-2'
 
-export function ForgotPassword2() {
+export default function Login2() {
   return (
     <div className="grid min-h-svh lg:grid-cols-2">
       <div className="flex flex-col gap-4 p-6 md:p-10">
@@ -12,7 +12,7 @@ export function ForgotPassword2() {
         </div>
         <div className="flex flex-1 items-center justify-center">
           <div className="w-full max-w-md">
-            <ForgotPasswordForm2 />
+            <LoginForm2 />
           </div>
         </div>
       </div>

@@ -1,10 +1,10 @@
-import { LoginForm3 } from './login-form-3'
+import { SignupForm3 } from './components/signup-form-3'
 
-export function Login3() {
+export default function Signup3() {
   return (
     <div className="bg-muted flex min-h-svh flex-col items-center justify-center p-6 md:p-10">
       <div className="w-full max-w-sm md:max-w-4xl">
-        <LoginForm3 />
+        <SignupForm3 />
       </div>
     </div>
   )

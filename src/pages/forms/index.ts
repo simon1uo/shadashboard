@@ -1,5 +1,0 @@
-export { AccountSettings } from './components/account-settings'
-export { BillingSettings } from './components/billing-settings'
-export { ConnectionSettings } from './components/connection-settings'
-export { NotificationSettings } from './components/notification-settings'
-export { UserSettings } from './components/user-settings'

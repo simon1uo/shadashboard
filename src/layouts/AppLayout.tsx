@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import { AppHeader } from '@/components/app-header'
 import { AppSidebar } from '@/components/app-sidebar'
@@ -29,6 +29,10 @@ export function AppLayout({ children }: { children?: ReactNode }) {
 
   const currentNav = useMemo(() => {
     return findNavItemByUrl(pathname)
+  }, [pathname])
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
   }, [pathname])
 
   return (

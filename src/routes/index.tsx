@@ -1,21 +1,25 @@
 import type { ReactNode } from 'react'
+import { lazy } from 'react'
 import { createBrowserRouter, Navigate } from 'react-router-dom'
 import { useAuth } from '@/hooks/use-auth'
 import { AppLayout } from '@/layouts/AppLayout'
-import {
-  ForgotPassword1,
-  ForgotPassword2,
-  ForgotPassword3,
-  Login1,
-  Login2,
-  Login3,
-  Signup1,
-  Signup2,
-  Signup3,
-} from '@/pages/auth'
-import { Dashboard } from '@/pages/dashboard'
-import { Error } from '@/pages/errors/components/error'
-import { AccountSettings, BillingSettings, ConnectionSettings, NotificationSettings, UserSettings } from '@/pages/forms'
+
+const Dashboard = lazy(() => import('@/pages/dashboard'))
+const Error = lazy(() => import('@/pages/errors/error'))
+const Login1 = lazy(() => import('@/pages/auth/login-1'))
+const Login2 = lazy(() => import('@/pages/auth/login-2'))
+const Login3 = lazy(() => import('@/pages/auth/login-3'))
+const ForgotPassword1 = lazy(() => import('@/pages/auth/forgot-password-1'))
+const ForgotPassword2 = lazy(() => import('@/pages/auth/forgot-password-2'))
+const ForgotPassword3 = lazy(() => import('@/pages/auth/forgot-password-3'))
+const Signup1 = lazy(() => import('@/pages/auth/signup-1'))
+const Signup2 = lazy(() => import('@/pages/auth/signup-2'))
+const Signup3 = lazy(() => import('@/pages/auth/signup-3'))
+const UserSettings = lazy(() => import('@/pages/setting/user-settings'))
+const AccountSettings = lazy(() => import('@/pages/setting/account-settings'))
+const NotificationSettings = lazy(() => import('@/pages/setting/notification-settings'))
+const ConnectionSettings = lazy(() => import('@/pages/setting/connection-settings'))
+const BillingSettings = lazy(() => import('@/pages/setting/billing-settings'))
 
 function IndexRedirect() {
   const { isAuthed } = useAuth()
