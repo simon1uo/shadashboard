@@ -1,0 +1,25 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .bg { fill: oklch(0.205 0 0 / 0.12); }
+    .text { fill: oklch(0.205 0 0); }
+
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: oklch(0.922 0 0 / 0.14); }
+      .text { fill: oklch(0.985 0 0); }
+    }
+  </style>
+  <rect class="bg" x="6" y="6" width="52" height="52" rx="12"/>
+  <text
+    class="text"
+    x="32"
+    y="34"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    font-family="Inter, 'Helvetica Neue', Arial, sans-serif"
+    font-weight="700"
+    font-size="22"
+    letter-spacing="0.5"
+  >
+    SD
+  </text>
+</svg>
