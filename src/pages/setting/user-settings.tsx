@@ -97,16 +97,16 @@ export default function UserSettings() {
               <div className="flex items-center gap-6 ">
                 {useDefaultIcon
                   ? (
-                    <div className="flex h-20 w-20 items-center justify-center rounded-lg">
-                      <AppLogo withText={false} />
-                    </div>
-                  )
+                      <div className="flex h-20 w-20 items-center justify-center rounded-lg">
+                        <AppLogo withText={false} />
+                      </div>
+                    )
                   : (
-                    <Avatar className="h-20 w-20 rounded-lg">
-                      <AvatarImage src={profileImage || undefined} />
-                      <AvatarFallback>SS</AvatarFallback>
-                    </Avatar>
-                  )}
+                      <Avatar className="h-20 w-20 rounded-lg">
+                        <AvatarImage src={profileImage || undefined} />
+                        <AvatarFallback>SS</AvatarFallback>
+                      </Avatar>
+                    )}
                 <div className="flex flex-col gap-2">
                   <div className="flex gap-2">
                     <Button

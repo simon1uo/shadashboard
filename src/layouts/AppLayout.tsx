@@ -15,10 +15,13 @@ function findNavItemByUrl(url: string) {
 
   while (queue.length) {
     const item = queue.shift()
-    if (!item) break
+    if (!item)
+      break
 
-    if (item.url === url) return item
-    if (item.items?.length) queue.push(...item.items)
+    if (item.url === url)
+      return item
+    if (item.items?.length)
+      queue.push(...item.items)
   }
 
   return undefined
@@ -46,15 +49,15 @@ export function AppLayout({ children }: { children?: ReactNode }) {
               <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
                 {currentNav
                   ? (
-                    <div className="px-4 lg:px-6">
-                      <div className="flex flex-col">
-                        <h1 className="text-2xl font-bold tracking-tight">{currentNav.title}</h1>
-                        {Boolean(currentNav.description) && (
-                          <p className="text-muted-foreground">{currentNav.description}</p>
-                        )}
+                      <div className="px-4 lg:px-6">
+                        <div className="flex flex-col">
+                          <h1 className="text-2xl font-bold tracking-tight">{currentNav.title}</h1>
+                          {Boolean(currentNav.description) && (
+                            <p className="text-muted-foreground">{currentNav.description}</p>
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  )
+                    )
                   : null}
                 {children ?? <Outlet />}
               </div>

@@ -1,9 +1,9 @@
-"use client"
+'use client'
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Sparkles, Check } from "lucide-react"
+import { Check, Sparkles } from 'lucide-react'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
 
 export interface PricingPlan {
@@ -66,11 +66,11 @@ const defaultPlans: PricingPlan[] = [
   },
 ]
 
-export function PricingPlans({ 
-  plans = defaultPlans, 
-  mode = 'pricing', 
+export function PricingPlans({
+  plans = defaultPlans,
+  mode = 'pricing',
   currentPlanId,
-  onPlanSelect 
+  onPlanSelect,
 }: PricingPlansProps) {
   const getButtonText = (plan: PricingPlan) => {
     if (mode === 'billing') {
@@ -79,10 +79,11 @@ export function PricingPlans({
       }
       const currentIndex = plans.findIndex(p => p.id === currentPlanId)
       const planIndex = plans.findIndex(p => p.id === plan.id)
-      
+
       if (planIndex > currentIndex) {
         return 'Upgrade Plan'
-      } else if (planIndex < currentIndex) {
+      }
+      else if (planIndex < currentIndex) {
         return 'Downgrade Plan'
       }
     }
@@ -101,22 +102,22 @@ export function PricingPlans({
   }
 
   return (
-    <div className='grid gap-8 lg:grid-cols-3'>
+    <div className="grid gap-8 lg:grid-cols-3">
       {plans.map(tier => (
         <Card
           key={tier.id}
-          className={cn('flex flex-col pt-0', { 
+          className={cn('flex flex-col pt-0', {
             'border-primary relative shadow-lg': tier.popular,
-            'border-primary': currentPlanId === tier.id && mode === 'billing'
+            'border-primary': currentPlanId === tier.id && mode === 'billing',
           })}
           aria-labelledby={`${tier.id}-title`}
         >
           {tier.popular && (
-            <div className='absolute start-0 -top-3 w-full'>
-              <Badge className='mx-auto flex w-fit gap-1.5 rounded-full font-medium'>
-                <Sparkles className='!size-4' />
+            <div className="absolute start-0 -top-3 w-full">
+              <Badge className="mx-auto flex w-fit gap-1.5 rounded-full font-medium">
+                <Sparkles className="!size-4" />
                 {mode === 'pricing' && (
-                <span>Most Popular</span>
+                  <span>Most Popular</span>
                 )}
                 {currentPlanId === tier.id && mode === 'billing' && (
                   <span>Current Plan</span>
@@ -124,32 +125,32 @@ export function PricingPlans({
               </Badge>
             </div>
           )}
-          <CardHeader className='space-y-2 pt-8 text-center'>
-            <CardTitle id={`${tier.id}-title`} className='text-2xl'>
+          <CardHeader className="space-y-2 pt-8 text-center">
+            <CardTitle id={`${tier.id}-title`} className="text-2xl">
               {tier.name}
             </CardTitle>
-            <p className='text-muted-foreground text-sm text-balance'>{tier.description}</p>
+            <p className="text-muted-foreground text-sm text-balance">{tier.description}</p>
           </CardHeader>
-          <CardContent className='flex flex-1 flex-col space-y-6'>
-            <div className='flex items-baseline justify-center'>
-              <span className='text-4xl font-bold'>{tier.price}</span>
-              <span className='text-muted-foreground text-sm'>{tier.frequency}</span>
+          <CardContent className="flex flex-1 flex-col space-y-6">
+            <div className="flex items-baseline justify-center">
+              <span className="text-4xl font-bold">{tier.price}</span>
+              <span className="text-muted-foreground text-sm">{tier.frequency}</span>
             </div>
-            <div className='space-y-2'>
+            <div className="space-y-2">
               {tier.features.map(feature => (
-                <div key={feature} className='flex items-center gap-2'>
-                  <div className='bg-muted rounded-full p-1'>
-                    <Check className='size-3.5' />
+                <div key={feature} className="flex items-center gap-2">
+                  <div className="bg-muted rounded-full p-1">
+                    <Check className="size-3.5" />
                   </div>
-                  <span className='text-sm'>{feature}</span>
+                  <span className="text-sm">{feature}</span>
                 </div>
               ))}
             </div>
           </CardContent>
           <CardFooter>
             <Button
-              className='w-full cursor-pointer'
-              size='lg'
+              className="w-full cursor-pointer"
+              size="lg"
               variant={getButtonVariant(tier)}
               disabled={isButtonDisabled(tier)}
               onClick={() => onPlanSelect?.(tier.id)}

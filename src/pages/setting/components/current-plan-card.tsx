@@ -1,7 +1,7 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Progress } from "@/components/ui/progress"
-import { Crown, AlertTriangle } from "lucide-react"
+import { AlertTriangle, Crown } from 'lucide-react'
+import { Badge } from '@/components/ui/badge'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Progress } from '@/components/ui/progress'
 
 interface CurrentPlan {
   planName: string
@@ -26,7 +26,10 @@ export function CurrentPlanCard({ plan }: CurrentPlanCardProps) {
       <CardHeader>
         <CardTitle>Current Plan</CardTitle>
         <CardDescription>
-          You are currently on the {plan.planName}.
+          You are currently on the
+          {' '}
+          {plan.planName}
+          .
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -38,7 +41,10 @@ export function CurrentPlanCard({ plan }: CurrentPlanCardProps) {
           </div>
           <div className="text-right">
             <div className="text-2xl font-bold">{plan.price}</div>
-            <div className="text-sm text-muted-foreground">Next billing: {plan.nextBilling}</div>
+            <div className="text-sm text-muted-foreground">
+              Next billing:
+              {plan.nextBilling}
+            </div>
           </div>
         </div>
 
@@ -52,15 +58,27 @@ export function CurrentPlanCard({ plan }: CurrentPlanCardProps) {
                   <p className="text-sm text-neutral-700 dark:text-neutral-400">{plan.attentionMessage}</p>
                 </div>
               </div>
-              
+
               {/* Progress Section */}
               <div className="mt-4 space-y-2">
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-muted-foreground font-medium">Days</span>
-                  <span className="text-sm text-muted-foreground font-medium">{plan.daysUsed} of {plan.totalDays} Days</span>
+                  <span className="text-sm text-muted-foreground font-medium">
+                    {plan.daysUsed}
+                    {' '}
+                    of
+                    {' '}
+                    {plan.totalDays}
+                    {' '}
+                    Days
+                  </span>
                 </div>
                 <Progress value={plan.progressPercentage} className="h-2" />
-                <p className="text-xs text-muted-foreground">{plan.remainingDays} days remaining until your plan requires update</p>
+                <p className="text-xs text-muted-foreground">
+                  {plan.remainingDays}
+                  {' '}
+                  days remaining until your plan requires update
+                </p>
               </div>
             </CardContent>
           </Card>

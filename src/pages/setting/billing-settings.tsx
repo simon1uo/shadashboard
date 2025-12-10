@@ -1,9 +1,9 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import billingHistoryData from './data/billing-history.json'
-import currentPlanData from './data/current-plan.json'
 import { BillingHistoryCard } from './components/billing-history-card'
 import { CurrentPlanCard } from './components/current-plan-card'
 import { PricingPlans } from './components/pricing-plans'
+import billingHistoryData from './data/billing-history.json'
+import currentPlanData from './data/current-plan.json'
 
 export default function BillingSettings() {
   const handlePlanSelect = (planId: string) => {
