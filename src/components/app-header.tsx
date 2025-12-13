@@ -1,6 +1,7 @@
 import { Separator } from '@/components/ui/separator'
 import { SidebarTrigger } from '@/components/ui/sidebar'
 import { appMeta } from '@/configs/app-data'
+import { AppAppearanceSetting } from './app-appearance-setting'
 import { AppModeToggle } from './app-mode-toggle'
 
 export function AppHeader() {
@@ -15,6 +16,7 @@ export function AppHeader() {
         </div>
       </div>
       <div className="flex items-center gap-2">
+        <AppAppearanceSetting />
         <AppModeToggle />
       </div>
     </header>

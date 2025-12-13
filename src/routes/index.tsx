@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react'
 import { lazy } from 'react'
 import { createBrowserRouter, Navigate } from 'react-router-dom'
+import { AppLayout } from '@/components/layouts/app-layout'
 import { useAuth } from '@/hooks/use-auth'
-import { AppLayout } from '@/layouts/AppLayout'
 
 const Dashboard = lazy(() => import('@/pages/dashboard'))
 const Agent = lazy(() => import('@/pages/agent/agent'))
@@ -102,66 +102,66 @@ export const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
+      {
+        path: '401',
+        element: <Error statusCode={401} />,
+      },
+      {
+        path: '403',
+        element: <Error statusCode={403} />,
+      },
+      {
+        path: '404',
+        element: <Error statusCode={404} />,
+      },
+      {
+        path: '500',
+        element: <Error statusCode={500} />,
+      },
+      {
+        path: '503',
+        element: <Error statusCode={503} />,
+      },
+      {
+        path: 'login',
+        element: <Login1 />,
+      },
+      {
+        path: 'login-2',
+        element: <Login2 />,
+      },
+      {
+        path: 'login-3',
+        element: <Login3 />,
+      },
+      {
+        path: 'forgot-password',
+        element: <ForgotPassword1 />,
+      },
+      {
+        path: 'forgot-password-2',
+        element: <ForgotPassword2 />,
+      },
+      {
+        path: 'forgot-password-3',
+        element: <ForgotPassword3 />,
+      },
+      {
+        path: 'auth/sign-up',
+        element: <Signup1 />,
+      },
+      {
+        path: 'auth/sign-up-2',
+        element: <Signup2 />,
+      },
+      {
+        path: 'auth/sign-up-3',
+        element: <Signup3 />,
+      },
+      {
+        path: '*',
+        element: <Error statusCode={404} />,
+      },
     ],
-  },
-  {
-    path: '/login',
-    element: <Login1 />,
-  },
-  {
-    path: '/login-2',
-    element: <Login2 />,
-  },
-  {
-    path: '/login-3',
-    element: <Login3 />,
-  },
-  {
-    path: '/forgot-password',
-    element: <ForgotPassword1 />,
-  },
-  {
-    path: '/forgot-password-2',
-    element: <ForgotPassword2 />,
-  },
-  {
-    path: '/forgot-password-3',
-    element: <ForgotPassword3 />,
-  },
-  {
-    path: '/auth/sign-up',
-    element: <Signup1 />,
-  },
-  {
-    path: '/auth/sign-up-2',
-    element: <Signup2 />,
-  },
-  {
-    path: '/auth/sign-up-3',
-    element: <Signup3 />,
-  },
-  {
-    path: '/401',
-    element: <Error statusCode={401} />,
-  },
-  {
-    path: '/403',
-    element: <Error statusCode={403} />,
-  },
-  {
-    path: '/404',
-    element: <Error statusCode={404} />,
-  },
-  {
-    path: '/500',
-    element: <Error statusCode={500} />,
-  },
-  {
-    path: '/503',
-    element: <Error statusCode={503} />,
-  },
-  {
-    path: '*',
-    element: <Error statusCode={404} />,
   },
 ])

@@ -6,7 +6,7 @@ import { router } from '@/routes'
 export function RouteProvider() {
   return (
     <Suspense fallback={<LoadingSpinner />}>
-      <RouterProvider router={router} fallbackElement={<LoadingSpinner />} />
+      <RouterProvider router={router} />
     </Suspense>
   )
 }

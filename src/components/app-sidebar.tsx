@@ -1,5 +1,7 @@
+import type { LinkProps } from 'react-router-dom'
 import { ChevronRight } from 'lucide-react'
-import { Link, useLocation } from 'react-router-dom'
+import { forwardRef } from 'react'
+import { Link as RouterLink, useLocation } from 'react-router-dom'
 import {
   Collapsible,
   CollapsibleContent,
@@ -25,6 +27,16 @@ import { user } from '@/configs/user'
 import { AppLogo } from './app-logo'
 import { AppUser } from './app-user'
 
+const TransitionLink = forwardRef<HTMLAnchorElement, LinkProps>(({ viewTransition = true, ...props }, ref) => (
+  <RouterLink
+    ref={ref}
+    viewTransition={viewTransition}
+    {...props}
+  />
+))
+
+TransitionLink.displayName = 'TransitionLink'
+
 export function AppSidebar() {
   const { pathname } = useLocation()
 
@@ -33,9 +45,9 @@ export function AppSidebar() {
       <SidebarHeader className="px-2 py-4">
         <SidebarMenuItem>
           <SidebarMenuButton asChild>
-            <Link to="/">
+            <TransitionLink to="/">
               <AppLogo showSubtitle />
-            </Link>
+            </TransitionLink>
           </SidebarMenuButton>
         </SidebarMenuItem>
       </SidebarHeader>
@@ -70,14 +82,14 @@ export function AppSidebar() {
                                 return (
                                   <SidebarMenuSubItem key={child.url || child.title}>
                                     <SidebarMenuSubButton asChild isActive={childActive}>
-                                      <Link
+                                      <TransitionLink
                                         to={child.url || '#'}
                                         aria-disabled={!child.url}
                                         target={child.target}
                                         rel={child.target === '_blank' ? 'noreferrer' : undefined}
                                       >
                                         <span>{child.title}</span>
-                                      </Link>
+                                      </TransitionLink>
                                     </SidebarMenuSubButton>
                                   </SidebarMenuSubItem>
                                 )
@@ -98,10 +110,10 @@ export function AppSidebar() {
                       >
                         {item.url
                           ? (
-                              <Link to={item.url} target={item.target} rel={item.target === '_blank' ? 'noreferrer' : undefined}>
+                              <TransitionLink to={item.url} target={item.target} rel={item.target === '_blank' ? 'noreferrer' : undefined}>
                                 {Icon ? <Icon className="size-4" /> : null}
                                 <span>{item.title}</span>
-                              </Link>
+                              </TransitionLink>
                             )
                           : (
                               <div className="flex items-center gap-2">

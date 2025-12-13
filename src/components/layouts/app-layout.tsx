@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { useEffect, useMemo } from 'react'
-import { Outlet, useLocation } from 'react-router-dom'
+import { Outlet, ScrollRestoration, useLocation, useNavigationType } from 'react-router-dom'
 import { AppHeader } from '@/components/app-header'
 import { AppSidebar } from '@/components/app-sidebar'
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
@@ -29,14 +29,33 @@ function findNavItemByUrl(url: string) {
 
 export function AppLayout({ children }: { children?: ReactNode }) {
   const { pathname } = useLocation()
+  const navigationType = useNavigationType()
 
   const currentNav = useMemo(() => {
     return findNavItemByUrl(pathname)
   }, [pathname])
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [pathname])
+    if (navigationType === 'POP')
+      return
+
+    const html = document.documentElement
+    const previousBehavior = html.style.scrollBehavior
+    html.style.scrollBehavior = 'auto'
+
+    const resetFrame = requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+      const restoreFrame = requestAnimationFrame(() => {
+        html.style.scrollBehavior = previousBehavior
+      })
+      return () => cancelAnimationFrame(restoreFrame)
+    })
+
+    return () => {
+      cancelAnimationFrame(resetFrame)
+      html.style.scrollBehavior = previousBehavior
+    }
+  }, [navigationType, pathname])
 
   return (
     <SidebarProvider>
@@ -44,6 +63,7 @@ export function AppLayout({ children }: { children?: ReactNode }) {
         <AppSidebar />
         <SidebarInset>
           <AppHeader />
+          <ScrollRestoration />
           <div className="flex flex-1 flex-col">
             <div className="@container/main flex flex-1 flex-col gap-2">
               <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
